@@ -1,0 +1,133 @@
+@media (max-width: 1199px) {
+    aside { left: 0; }
+    section { padding-left: 270px; }
+    .about-content .user--details .user--info span { display: block; margin-left: 0; }
+}
+
+@media (max-width: 991px) {
+    aside { width: 100%; left: 0; height: auto; flex-direction: row; justify-content: space-between; align-items: center; padding: 15px; }
+    aside .logo { position: relative; top: auto; left: auto; font-size: 24px;}
+    aside .logo a { position: relative; top: auto; left: auto; }
+    aside .navigation--section { display: flex; margin-top: 0; width: 70%; flex-direction: column; align-items: flex-end; text-align: center;}
+    aside .navigation--section ul { flex-direction: row; justify-content: space-around; display: flex; }
+    aside .navigation--section li { margin: 0 10px; display: inline-block; }
+    aside .navigation--section li a { font-size: 12px; }
+    aside .socials {display: none;}
+    section { padding-left: 0;}
+    #about, #services, #portfolio, #contact { padding-top: 80px; }
+    #about h2, #services h2, #portfolio h2, #contact h2 { font-size: 30px; font-weight: 600; }
+    #about h3, #services h3, #portfolio h3, #contact h3 { font-size: 22px; }
+    .hero .user-info { flex: 0 0 50%; max-width: 50%; }
+    .hero .user-img { flex: 1; max-width: 100%; }
+    .services--box,
+    .contact--links,
+    .portfolio--cards { flex: 100%; max-width: 50%; justify-content: space-evenly;}
+    .portfolio--subheading { flex: 0 0 100%; max-width: 100%; display: flex; justify-content: center; }
+}
+
+@media (max-width: 767px) {
+    aside .logo a { font-size: 28px; font-weight: 700; padding: 12px 18px; letter-spacing: 3px;}
+    aside .hamburger i { font-size: 30px; color: var(--accent-color-1); transition: transform 0.3s; }
+    aside .hamburger { display: block !important; position: relative; left: auto; top: auto; background: none; padding: 0; order: 3; z-index: 999; }
+    
+    /* Sleek full-screen glassmorphic mobile menu */
+    aside .navigation--section { 
+        visibility: hidden; opacity: 0; position: fixed; top: 0; left: 0; 
+        width: 100vw; height: 100vh; background: rgba(5, 4, 10, 0.95); backdrop-filter: blur(15px);
+        transform: translateY(-20px); transition: all 0.4s ease; z-index: 998;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    aside .navigation--section.active { 
+        visibility: visible; opacity: 1; transform: translateY(0); 
+    }
+    aside .navigation--section ul { flex-direction: column; justify-content: center; display: flex; text-align: center; }
+    aside .navigation--section li { margin: 25px 0; display: block; opacity: 0; animation: fadeUp 0.5s forwards 0.3s; }
+    aside .navigation--section li a { font-size: 24px; font-weight: 500; }
+    
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(-10px); } }
+
+    aside .socials { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); width: auto; flex-direction: row; gap: 20px; z-index: 999; display: none; }
+    aside .navigation--section.active ~ .socials { display: flex; animation: fadeUp 0.5s forwards 0.5s; }
+    
+    .about-content .user--details,
+    .about-content .user--skills,
+    .about-content .user--education,
+    .about-content .user--experience { flex: 0 0 100%; max-width: 100%; display: flex; flex-direction: column; }
+    .portfolio--subheading { flex: 0 0 100%; max-width: 100%; display: flex; }
+    .portfolio--subheading a { font-size: 10px;}
+    .portfolio--subheading a i { display: none;}
+    .portfolio--cards { flex: 100%; max-width: 100%;}
+    .about-content .user--skills { margin-top: 20px; }
+    .about-content .user--skills .skill--details { padding: 0; }
+}
+
+@media (max-width: 639px) {
+    aside .logo a { font-size: 25px; font-weight: 700; padding: 15px 15px; letter-spacing: 3px;}
+    aside .logo a::before,
+    aside .logo a::after { width: 22px; height: 22px; }
+    aside .logo a::before { border-top: 5px solid var(--accent-color-1); border-left: 5px solid var(--accent-color-1);}
+    aside .logo a::after { border-bottom: 5px solid var(--accent-color-1); border-right: 5px solid var(--accent-color-1);}
+    aside .logo a span { font-size: 38px;}
+    .hero .user-info,
+    .hero .user-img { flex: 100%; max-width: 100%; }
+    .hero .user-img { display: none; }
+    .about-content .user--details,
+    .about-content .user--skills,
+    .about-content .user--education,
+    .about-content .user--experience { flex: 0 0 100%; max-width: 100%; flex-direction: column; }
+    .services--box,
+    .portfolio--cards,
+    .contact--form .col-12,
+    .contact--links { flex: 100%; max-width: 100%; }
+    .portfolio--subheading .buttons { display: flex;  align-items: center; flex-direction: row; font-size: 10px;}
+}
+
+@media (max-width: 600px) {
+    aside { width: 100%; left: 0; height: auto; flex-direction: row; justify-content: space-between; padding: 15px; }
+    aside .logo a { font-size: 23px; font-weight: 700; padding: 15px 15px; letter-spacing: 2.5px;}
+    aside .logo a::before,
+    aside .logo a::after { width: 22px; height: 22px; }
+    aside .logo a::before { border-top: 5px solid var(--accent-color-1); border-left: 5px solid var(--accent-color-1);}
+    aside .logo a::after { border-bottom: 5px solid var(--accent-color-1); border-right: 5px solid var(--accent-color-1);}
+    aside .logo a span { font-size: 35px;}
+    aside .hamburger { display: block !important; position: relative; left: auto; top: auto; background: none; padding: 0; }
+    aside .hamburger i { font-size: 24px; color: var(--accent-color-1); }
+    aside .logo { position: relative; top: auto; left: auto; }
+    aside .navigation--section { margin-top: 0; }
+    aside .socials { position: relative; bottom: auto; left: auto; transform: none; width: auto; flex-direction: row; gap: 10px; margin-top: 0; }
+    aside .copyright { position: relative; bottom: auto; }
+    section { padding-left: 0; }
+    .portfolio--category--buttons {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    aside .logo a { font-size: 22px; font-weight: 700; padding: 13px 13px; letter-spacing: 2px;}
+    aside .logo a::before,
+    aside .logo a::after { width: 21px; height: 21px; }
+    aside .logo a span { font-size: 33px;}
+    aside .navigation--section { margin-top: 0; width: 100%; }
+    aside .socials { position: relative; bottom: auto; left: auto; transform: none; width: 100%; flex-direction: row; gap: 10px; margin-top: 10px; }
+    aside .copyright { position: relative; bottom: auto; width: 100%; }
+    .hero .user-info .name { font-size: 20px; }
+    .hero .user-info .title { font-size: 18px; }
+    .about-content .user--details .user--info { flex: 0 0 100%; max-width: 100%; }
+    .about-content .user--details .button { display: flex; flex-wrap: wrap; gap: 10px; }
+    .about-content .user--details .buttons { font-size: 12px; }
+    .about-content .user--details .btn { margin-right: 5px; }
+    .contacts--subheading { font-size: 20px; }
+    .contact--links { flex: 0 0 100%; max-width: 100%; margin-bottom: 30px; }
+}
+
+@media (max-width: 380px) {
+    .about-content .user--details .user--info { flex: 0 0 100%; max-width: 100%; }
+    .about-content .user--details .buttons { font-size: 11px; }
+    .about-content .user--details .btn { margin-right: 5px; }
+    .hero .user-info .name { font-size: 18px; }
+    .hero .user-info .title { font-size: 16px; }
+    .section .section-title .intro { font-size: 32px; padding-left: 10px; }
+    .portfolio--cards { flex: 100%; max-width: 100%; }
+}
