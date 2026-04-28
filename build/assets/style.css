@@ -438,8 +438,8 @@ aside .copyright p { font-size: 10px; color: var(--bg-col-raisin-black); }
 .services--box .services--box--contents:hover { box-shadow: 0 0 10px var(--text-col-cadet-gray); }
 
 .services--box--contents .services--icons {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: block;
     place-content: center;
@@ -450,8 +450,8 @@ aside .copyright p { font-size: 10px; color: var(--bg-col-raisin-black); }
 .services--box--contents:hover .services--icons { background-color: var(--accent-color-1); }
 
 .services--box--contents .services--icons i {
-    font-size: 40px;
-    line-height: 60px;
+    font-size: 50px;
+    line-height: 30px;
     color: var(--accent-color-1);
     transition: all .5s ease;
 }
