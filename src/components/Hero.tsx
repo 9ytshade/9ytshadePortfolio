@@ -11,10 +11,13 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         <div className="row padding-15">
           <div className="user-info padding-15">
             <h2 className="name">Hello, my name is <span>9ytshade</span></h2>
+            <h3 className="title">Web3 Developer, Frontend Engineer & Content Strategist</h3>
             <p className="details">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit facilis harum
-              nam optio sed necessitatibus omnis, voluptates fugiat obcaecati perspiciatis deleniti
-              blanditiis et natus possimus est voluptatibus quaerat expedita tenetur.
+              I am a results-driven Web3 Developer, Frontend Engineer, and Content Strategist with a 
+              background in Digital Electronics and Physics. I specialize in building decentralized 
+              applications (dApps), leading technical operations, and managing high-growth communities 
+              within the Web3 ecosystem. My mission is to bridge the gap between complex blockchain 
+              technology and intuitive, user-centric experiences.
             </p>
             <a href="#contact" className="buttons" id="hire-m" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}>
               Hire Me <i className="fa-solid fa-arrow-right"></i>

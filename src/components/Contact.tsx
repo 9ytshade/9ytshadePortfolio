@@ -11,7 +11,7 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
-    
+
     try {
       // NOTE: Replace "YOUR_ACCESS_KEY_HERE" with your free Web3Forms access key
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -25,7 +25,7 @@ const Contact: React.FC = () => {
           ...formData
         })
       });
-      
+
       const result = await response.json();
       if (result.success) {
         setStatus('success');
@@ -62,12 +62,12 @@ const Contact: React.FC = () => {
           <div className="contact--links">
             <div className="icon"><i className="fa-solid fa-location-dot"></i></div>
             <h4>Office</h4>
-            <a href="#">Abuja, Nigeria</a>
+            <a href="#">Uyo, Nigeria</a>
           </div>
           <div className="contact--links">
             <div className="icon"><i className="fa-solid fa-globe"></i></div>
             <h4>Website</h4>
-            <a href="http://www.x.com/9ytshade">www.9ytshade.com</a>
+            <a href="https://x.com/9ytshade" target="_blank" rel="noopener noreferrer">x.com/9ytshade</a>
           </div>
         </div>
         <h3 className="contacts--subheading padding-15">Send Me An Email</h3>

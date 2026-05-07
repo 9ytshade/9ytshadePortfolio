@@ -8,6 +8,12 @@ import Contact from './components/Contact';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [portfolioCategory, setPortfolioCategory] = useState<'webapps' | 'strategy' | 'moderation'>('webapps');
+
+  const navigateToPortfolio = (category: 'webapps' | 'strategy' | 'moderation') => {
+    setPortfolioCategory(category);
+    setActiveSection('portfolio');
+  };
 
   return (
     <main>
@@ -15,8 +21,15 @@ const App: React.FC = () => {
       
       {activeSection === 'home' && <Hero onNavigate={setActiveSection} />}
       {activeSection === 'about' && <About onNavigate={setActiveSection} />}
-      {activeSection === 'services' && <Services />}
-      {activeSection === 'portfolio' && <Portfolio />}
+      {activeSection === 'services' && (
+        <Services 
+          onNavigate={setActiveSection} 
+          onPortfolioNavigate={navigateToPortfolio} 
+        />
+      )}
+      {activeSection === 'portfolio' && (
+        <Portfolio initialCategory={portfolioCategory} />
+      )}
       {activeSection === 'contact' && <Contact />}
     </main>
   );

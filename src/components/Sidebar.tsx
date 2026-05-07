@@ -76,17 +76,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onNavigate }) => {
         </ul>
       </nav>
       <div className="socials">
-        <a href="https://www.facebook.com" title="Facebook" target="_blank" rel="noopener noreferrer">
-          <i className="fa-brands fa-facebook"></i>
-        </a>
-        <a href="https://www.twitter.com" title="Twitter" target="_blank" rel="noopener noreferrer">
+        <a href="https://x.com/9ytshade" title="Twitter" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-x-twitter"></i>
         </a>
-        <a href="https://www.linkedIn.com" title="LinkedIn" target="_blank" rel="noopener noreferrer">
-          <i className="fa-brands fa-linkedin-in"></i>
-        </a>
-        <a href="https://www.whatsapp.com" title="WhatsApp" target="_blank" rel="noopener noreferrer">
-          <i className="fa-brands fa-whatsapp"></i>
+        <a href="https://github.com/9ytshade" title="GitHub" target="_blank" rel="noopener noreferrer">
+          <i className="fa-brands fa-github"></i>
         </a>
       </div>
     </aside>

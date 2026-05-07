@@ -1,6 +1,11 @@
 import React from 'react';
 
-const Services: React.FC = () => {
+interface ServicesProps {
+  onNavigate: (section: string) => void;
+  onPortfolioNavigate: (category: 'webapps' | 'strategy' | 'moderation') => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ onNavigate, onPortfolioNavigate }) => {
   return (
     <section className="section" id="services">
       <div className="container">
@@ -13,79 +18,109 @@ const Services: React.FC = () => {
           <div className="services--box padding-15">
             <div className="services--box--contents">
               <div className="services--icons">
-                <i className="fa-solid fa-chalkboard"></i>
+                <i className="fa-solid fa-code"></i>
               </div>
-              <h4>Mentorship</h4>
+              <h4>Frontend Development</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam vero quam facilis
-                totam, quisquam iste est blanditiis voluptas.
+                Building responsive, high-performance web applications using React,
+                TypeScript, and modern CSS frameworks to deliver exceptional user experiences.
               </p>
-              <a href="#" className="buttons">See more</a>
+              <button
+                onClick={() => onPortfolioNavigate('webapps')}
+                className="buttons"
+              >
+                View Projects
+              </button>
             </div>
           </div>
           <div className="services--box padding-15">
             <div className="services--box--contents">
               <div className="services--icons">
-                <i className="fa-solid fa-blog"></i>
+                <i className="fa-solid fa-chalkboard-user"></i>
               </div>
-              <h4>Ghost Writing</h4>
+              <h4>Technical Training</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam vero quam facilis
-                totam, quisquam iste est blanditiis voluptas.
+                Empowering individuals and teams with hands-on training in web
+                development, digital literacy, and professional soft skills.
               </p>
-              <a href="#" className="buttons">See more</a>
+              <button
+                onClick={() => onNavigate('contact')}
+                className="buttons"
+              >
+                Book a Session
+              </button>
             </div>
           </div>
           <div className="services--box padding-15">
             <div className="services--box--contents">
               <div className="services--icons">
-                <i className="fa-solid fa-book"></i>
+                <i className="fa-brands fa-ethereum"></i>
               </div>
-              <h4>Amazon KDP</h4>
+              <h4>Web3 & Blockchain</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam vero quam facilis
-                totam, quisquam iste est blanditiis voluptas.
+                Building dApps, Navigating the decentralized landscape with insights into blockchain
+                protocols, dApps, and technical crypto market analysis.
               </p>
-              <a href="#" className="buttons">See more</a>
+              <button
+                onClick={() => onPortfolioNavigate('webapps')}
+                className="buttons"
+              >
+                View Web3 Apps
+              </button>
             </div>
           </div>
           <div className="services--box padding-15">
             <div className="services--box--contents">
               <div className="services--icons">
-                <i className="fa-brands fa-bitcoin"></i>
+                <i className="fa-solid fa-users-gear"></i>
               </div>
-              <h4>Crypto Trading</h4>
+              <h4>Community Management</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam vero quam facilis
-                totam, quisquam iste est blanditiis voluptas.
+                Leading and moderating digital communities to ensure safety,
+                high engagement, and sustainable ecosystem growth.
               </p>
-              <a href="#" className="buttons">See more</a>
+              <button
+                onClick={() => onPortfolioNavigate('moderation')}
+                className="buttons"
+              >
+                View moderation
+              </button>
             </div>
           </div>
           <div className="services--box padding-15">
             <div className="services--box--contents">
               <div className="services--icons">
-                <i className="fa-solid fa-pen-fancy"></i>
+                <i className="fa-solid fa-pen-nib"></i>
               </div>
-              <h4>Writer</h4>
+              <h4>Content Strategy</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam vero quam facilis
-                totam, quisquam iste est blanditiis voluptas.
+                Crafting technical documentation and persuasive copy that translates
+                complex concepts into engaging and accessible content.
               </p>
-              <a href="#" className="buttons">See more</a>
+              <button
+                onClick={() => onPortfolioNavigate('strategy')}
+                className="buttons"
+              >
+                View strategy
+              </button>
             </div>
           </div>
           <div className="services--box padding-15">
             <div className="services--box--contents">
               <div className="services--icons">
-                <i className="fa-solid fa-comments-dollar"></i>
+                <i className="fa-solid fa-microchip"></i>
               </div>
-              <h4>Tutoring</h4>
+              <h4>Analytical Consulting</h4>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam vero quam facilis
-                totam, quisquam iste est blanditiis voluptas...
+                Leveraging a background in Physics and Digital Electronics for
+                data-driven problem solving and technical strategy.
               </p>
-              <a href="#" className="buttons">See more</a>
+              <button
+                onClick={() => onNavigate('contact')}
+                className="buttons"
+              >
+                Get Started
+              </button>
             </div>
           </div>
         </div>
