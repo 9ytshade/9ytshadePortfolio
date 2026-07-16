@@ -1,9 +1,23 @@
 import React, { useState } from 'react';
 
+type NavItem = {
+  id: string;
+  label: string;
+  icon: string;
+};
+
 type SidebarProps = {
   activeSection: string;
   onNavigate: (section: string) => void;
 };
+
+const navItems: NavItem[] = [
+  { id: 'home', label: 'Home', icon: 'fa-solid fa-house-chimney' },
+  { id: 'about', label: 'About', icon: 'fa-solid fa-user' },
+  { id: 'services', label: 'Services', icon: 'fa-solid fa-compass-drafting' },
+  { id: 'portfolio', label: 'Work', icon: 'fa-solid fa-briefcase' },
+  { id: 'contact', label: 'Contact', icon: 'fa-solid fa-paper-plane' }
+];
 
 const Sidebar: React.FC<SidebarProps> = ({ activeSection, onNavigate }) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -15,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onNavigate }) => {
   };
 
   return (
-    <aside className="navigation">
+    <aside className={`navigation ${isMobileOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
       {!isMobileOpen && (
         <div className="logo">
           <a href="#home" onClick={(e) => handleNav(e, 'home')}>
@@ -23,56 +37,30 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onNavigate }) => {
           </a>
         </div>
       )}
-      <div className="hamburger" style={{ marginLeft: isMobileOpen ? 'auto' : '0' }} onClick={() => setIsMobileOpen(!isMobileOpen)}>
+      <button
+        className="hamburger"
+        type="button"
+        aria-label={isMobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={isMobileOpen}
+        onClick={() => setIsMobileOpen(!isMobileOpen)}
+      >
         <i className={isMobileOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars"}></i>
-      </div>
+      </button>
       <nav className={`navigation--section ${isMobileOpen ? 'active' : ''}`}>
         <ul>
-          <li>
-            <a
-              href="#home"
-              className={`home--butt ${activeSection === 'home' ? 'active' : ''}`}
-              onClick={(e) => handleNav(e, 'home')}
-            >
-              <i className="fa-solid fa-house-chimney"></i> Home
-            </a>
-          </li>
-          <li>
-            <a
-              href="#about"
-              className={`about--butt ${activeSection === 'about' ? 'active' : ''}`}
-              onClick={(e) => handleNav(e, 'about')}
-            >
-              <i className="fa-duotone fa-solid fa-user"></i> About
-            </a>
-          </li>
-          <li>
-            <a
-              href="#services"
-              className={`services--butt ${activeSection === 'services' ? 'active' : ''}`}
-              onClick={(e) => handleNav(e, 'services')}
-            >
-              <i className="fa-solid fa-list-ul"></i> Services
-            </a>
-          </li>
-          <li>
-            <a
-              href="#portfolio"
-              className={`portfolio--butt ${activeSection === 'portfolio' ? 'active' : ''}`}
-              onClick={(e) => handleNav(e, 'portfolio')}
-            >
-              <i className="fa-solid fa-briefcase"></i> Portfolio
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contact"
-              className={`contact--butt ${activeSection === 'contact' ? 'active' : ''}`}
-              onClick={(e) => handleNav(e, 'contact')}
-            >
-              <i className="fa-solid fa-phone-volume"></i> Contact
-            </a>
-          </li>
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                className={activeSection === item.id ? 'active' : ''}
+                aria-current={activeSection === item.id ? 'page' : undefined}
+                onClick={(e) => handleNav(e, item.id)}
+              >
+                <i className={item.icon}></i>
+                <span>{item.label}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
       <div className="socials">
@@ -81,6 +69,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onNavigate }) => {
         </a>
         <a href="https://github.com/9ytshade" title="GitHub" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/ukpeflynn/" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+          <i className="fa-brands fa-linkedin-in"></i>
         </a>
       </div>
     </aside>

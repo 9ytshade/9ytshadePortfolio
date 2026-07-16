@@ -4,182 +4,186 @@ type AboutProps = {
   onNavigate: (section: string) => void;
 };
 
+type TimelineItem = {
+  date: string;
+  title: string;
+  desc: string;
+  certImage?: string;
+};
+
+const education: TimelineItem[] = [
+  {
+    date: '2015 - 2020',
+    title: 'B.Sc Physics',
+    desc: 'Built the analytical base I now use for systems thinking, technical writing, and debugging complex product behavior.',
+    certImage: './assets/images/certifications/physics.png'
+  },
+  {
+    date: '2021 - 2023',
+    title: 'Frontend Web Development',
+    desc: 'Trained in modern interface development, with emphasis on React, reusable components, responsive layouts, and product usability.',
+    certImage: './assets/images/certifications/frontend.png'
+  },
+  {
+    date: '2023',
+    title: 'Jobberman Soft Skills Training',
+    desc: 'Strengthened communication, leadership, and workplace coordination skills used across training and community operations.',
+    certImage: './assets/images/certifications/softskills.png'
+  },
+  {
+    date: '2024 - 2025',
+    title: 'Digital Content & Copywriting',
+    desc: 'Focused on translating technical ideas into narratives people can understand, trust, and act on.',
+    certImage: './assets/images/certifications/digital_content.png'
+  },
+  {
+    date: '2025 - Present',
+    title: 'Blockchain & Web3 Development',
+    desc: 'Ongoing practice across decentralized applications, ecosystem tooling, and blockchain-focused technical education.',
+    certImage: './assets/images/certifications/blockchain.png'
+  }
+];
+
+const experience: TimelineItem[] = [
+  {
+    date: '2026 - Present',
+    title: 'Admin / Moderator - Nexura',
+    desc: 'Moderating the Nexura community, supporting healthy participation, and helping users connect with the Intuition ecosystem.'
+  },
+  {
+    date: '2023 - 2024',
+    title: 'Admin / Administrative Head - DGMDA',
+    desc: 'Improved accountability systems, digital records, team communication, and stakeholder feedback loops for a learning environment.'
+  },
+  {
+    date: '2022 - 2023',
+    title: 'Training Assistant - Al-Gaddafi Computer Institute',
+    desc: 'Guided students through Microsoft Office and foundational web development while supervising practical project work.'
+  }
+];
+
+const skillGroups = [
+  ['React.js', 'TypeScript', 'Frontend Architecture', 'Responsive UI'],
+  ['Web3 Apps', 'GenLayer', 'Intuition', 'Technical Research'],
+  ['Community Moderation', 'Content Strategy', 'Technical Writing', 'Training']
+];
+
 const About: React.FC<AboutProps> = ({ onNavigate }) => {
   const [selectedCert, setSelectedCert] = useState<string | null>(null);
 
   return (
     <>
-      <section className="section" id="about">
+      <section className="section about-section" id="about">
         <div className="container">
-          <div className="row padding-15">
-            <div className="section-title">
-              <h2 className="intro">About Me</h2>
-            </div>
+          <div className="section-kicker">Trust Layer</div>
+          <div className="section-title">
+            <h2 className="intro">A technical mind with operator instincts.</h2>
+            <p>
+              My work sits where products, people, and technical narratives meet. I can build the interface,
+              explain the system behind it, and help the community use it with confidence.
+            </p>
           </div>
-          <div className="row padding-15">
-            <div className="about-content">
-              <div className="row padding-15">
-                <div className="about--content--text">
-                  <p>
-                    My journey began in the world of Digital Electronics and  Physics, which cultivated a
-                    deep-seated passion for analytical problem-solving and structured logic.
-                    This foundation has been pivotal as I transitioned into technology, where
-                    I now merge technical development with strategic leadership.
-                    <br /><br />
-                    From building interactive web applications and training students in foundational web technologies to managing
-                    complex community operations, I bring a unique blend of
-                    scientific rigor and creative innovation to the Web3 space. I am dedicated
-                    to building decentralized solutions that are as robust as they are
-                    accessible.
-                  </p>
-                </div>
+
+          <div className="about-grid">
+            <article className="about-story">
+              <span className="panel-label">Origin</span>
+              <p>
+                Physics trained me to respect evidence. Digital Electronics taught me to think in systems.
+                Web3 gave that foundation a place to become useful: interfaces that feel understandable,
+                communities that feel guided, and technical content that does not flatten the subject.
+              </p>
+              <p>
+                I am strongest on projects that need more than execution: early ecosystem products,
+                developer-facing tools, technical onboarding, content explainers, and community operations
+                where ambiguity has to become a clear next step.
+              </p>
+              <div className="about-actions">
+                <a className="buttons primary" href="./assets/INTELLIGENT CV (SE).pdf" download>
+                  Download CV <i className="fa-solid fa-file-arrow-down"></i>
+                </a>
+                <a href="#contact" className="buttons secondary" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}>
+                  Check Availability
+                </a>
               </div>
-              <div className="row">
-                <div className="user--details padding-15">
-                  <div className="row">
-                    <div className="user--info">
-                      <p>X (Twitter) : <span>@9ytshade</span></p>
-                    </div>
-                    <div className="user--info">
-                      <p>Email : <span>flynnbright@gmail.com</span></p>
-                    </div>
-                    <div className="user--info">
-                      <p>Degree : <span>Physics</span></p>
-                    </div>
-                    <div className="user--info">
-                      <p>Phone : <span>+234-814-995-6218</span></p>
-                    </div>
-                    <div className="user--info">
-                      <p>City : <span>Uyo, Nigeria</span></p>
-                    </div>
-                    <div className="user--info">
-                      <p>Freelance : <span>Available</span></p>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="button">
-                      <button className="buttons btn" disabled title="CV will be available soon">Download CV</button>
-                      <a href="#contact" className="buttons" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}>Hire Me</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="user--skills padding-15">
-                  <h3 className="skills--title">SKILLS & TECH</h3>
-                  <div className="skills--pills--container">
-                    {[
-                      'React.js', 'Community Management', 'Technical Writing', 'Python', 'Linux Administration', 'Networking', 'Software Engineering'
-                    ].map(skill => (
-                      <span key={skill} className="skill--pill">{skill}</span>
-                    ))}
-                  </div>
-                </div>
+            </article>
+
+            <aside className="profile-card" aria-label="Profile details">
+              <div>
+                <span>X / Twitter</span>
+                <a href="https://x.com/9ytshade" target="_blank" rel="noopener noreferrer">@9ytshade</a>
               </div>
-              <div className="row">
-                <div className="user--education padding-15">
-                  <h3>Education</h3>
-                  <div className="row">
-                    <div className="timeline">
-                      <div className="timeline--details">
-                        {[
-                          {
-                            date: '2015 - 2020',
-                            title: 'B.Sc Physics',
-                            desc: 'I hold a B.Sc in Physics from the University of Uyo, where I developed strong analytical reasoning, problem-solving, and quantitative analysis skills.',
-                            certImage: './assets/images/certifications/physics.png'
-                          },
-                          {
-                            date: '2021 - 2023',
-                            title: 'Frontend Web Development',
-                            desc: 'Completed intensive training in modern web technologies including React, Node.js, and TypeScript, focusing on building scalable and responsive applications.',
-                            certImage: './assets/images/certifications/frontend.png'
-                          },
-                          {
-                            date: '2023 - 2023',
-                            title: 'Jobberman Accelerated Soft Skills Training',
-                            desc: 'Completed intensive training in modern web technologies including React, Node.js, and TypeScript, focusing on building scalable and responsive applications.',
-                            certImage: './assets/images/certifications/softskills.png'
-                          },
-                          {
-                            date: '2024 - 2025',
-                            title: 'Digital Content & Copywriting',
-                            desc: 'Specialized certification in content strategy and persuasive writing, enhancing my ability to communicate complex ideas effectively to diverse audiences.',
-                            certImage: './assets/images/certifications/digital_content.png'
-                          },
-                          {
-                            date: '2025 - Present',
-                            title: 'Blockchain & Web3 Development',
-                            desc: 'Ongoing research and development in blockchain protocols and decentralized applications, focusing on the future of finance and technology.',
-                            certImage: './assets/images/certifications/blockchain.png'
-                          }
-                        ].map((edu, i) => (
-                          <div className="timeline--content padding-15" key={`edu-${i}`}>
-                            <div className="timeline--circle"></div>
-                            <div className="timeline--date"><i className="fa fa-calendar"></i> {edu.date}</div>
-                            <h4>{edu.title}</h4>
-                            <p>{edu.desc}</p>
-                            <button
-                              className="view-cert-btn"
-                              disabled
-                              title="Certification will be available soon"
-                            >
-                              <i className="fa-solid fa-certificate"></i> View Certification
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="user--experience padding-15">
-                  <h3>Experience</h3>
-                  <div className="row">
-                    <div className="timeline">
-                      <div className="timeline--details">
-                        {[
-                          {
-                            company: 'Admin/Moderator - Nexura',
-                            date: '2026 - Present',
-                            desc: 'Moderating and managing the Nexura community, ensuring a safe and engaging environment for users.'
-                          },
-                          {
-                            company: 'Admin/Administrative Head - DGMDA',
-                            date: '2023 - 2024',
-                            desc: 'Led teaching staff operations by improving accountability systems, implementing digital record-keeping and communication frameworks, and coordinating stakeholder engagement to enhance student performance tracking and feedback processes.'
-                          },
-                          {
-                            company: 'Training Assistant - Al-Gaddafi Computer Institute',
-                            date: '2022 - 2023',
-                            desc: 'Trained students in Microsoft Office and foundational web development, supervised practical data and web app projects, and coordinated hands-on learning sessions while tracking student progress.'
-                          }
-                        ].map((exp, i) => (
-                          <div className="timeline--content padding-15" key={`exp-${i}`}>
-                            <div className="timeline--circle"></div>
-                            <div className="timeline--date"><i className="fa fa-calendar"></i> {exp.date}</div>
-                            <h4>{exp.company}</h4>
-                            <p>{exp.desc}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div>
+                <span>Email</span>
+                <a href="mailto:flynnbright@gmail.com">flynnbright@gmail.com</a>
               </div>
-            </div>
+              <div>
+                <span>Discipline</span>
+                <strong>Web3, frontend, content, community</strong>
+              </div>
+              <div>
+                <span>Location</span>
+                <strong>Uyo, Nigeria</strong>
+              </div>
+              <div>
+                <span>Status</span>
+                <strong>Available for selected work</strong>
+              </div>
+            </aside>
+          </div>
+
+          <div className="skill-matrix" aria-label="Capabilities">
+            {skillGroups.map((group, groupIndex) => (
+              <div className="skill-column" key={`skill-group-${groupIndex}`}>
+                {group.map((skill) => (
+                  <span key={skill} className="skill--pill">{skill}</span>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          <div className="timeline-grid">
+            <Timeline title="Education" items={education} onViewCert={setSelectedCert} />
+            <Timeline title="Experience" items={experience} />
           </div>
         </div>
       </section>
 
       {selectedCert && (
-        <div className="modal-overlay" onClick={() => setSelectedCert(null)}>
+        <div className="modal-overlay" role="dialog" aria-modal="true" aria-label="Certification preview" onClick={() => setSelectedCert(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="modal-close" onClick={() => setSelectedCert(null)}>&times;</span>
-            <img src={selectedCert} alt="Certification" />
-            <h3>Certification</h3>
+            <button className="modal-close" type="button" aria-label="Close preview" onClick={() => setSelectedCert(null)}>&times;</button>
+            <img src={selectedCert} alt="Certification preview" />
           </div>
         </div>
       )}
     </>
   );
 };
+
+type TimelineProps = {
+  title: string;
+  items: TimelineItem[];
+  onViewCert?: (image: string) => void;
+};
+
+const Timeline: React.FC<TimelineProps> = ({ title, items, onViewCert }) => (
+  <section className="timeline-panel" aria-labelledby={`${title.toLowerCase()}-timeline`}>
+    <h3 id={`${title.toLowerCase()}-timeline`}>{title}</h3>
+    <div className="timeline">
+      {items.map((item) => (
+        <article className="timeline--content" key={`${title}-${item.date}-${item.title}`}>
+          <div className="timeline--date"><i className="fa fa-calendar"></i> {item.date}</div>
+          <h4>{item.title}</h4>
+          <p>{item.desc}</p>
+          {item.certImage && onViewCert && (
+            <button className="view-cert-btn" type="button" onClick={() => onViewCert(item.certImage!)}>
+              <i className="fa-solid fa-certificate"></i> View Proof
+            </button>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+);
 
 export default About;

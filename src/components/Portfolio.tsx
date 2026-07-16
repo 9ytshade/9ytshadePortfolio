@@ -1,186 +1,210 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+type PortfolioCategory = 'webapps' | 'strategy' | 'moderation';
 
 interface PortfolioProps {
-  initialCategory?: 'webapps' | 'strategy' | 'moderation';
+  initialCategory?: PortfolioCategory;
 }
 
-const Portfolio: React.FC<PortfolioProps> = ({ initialCategory }) => {
-  const [activeCategory, setActiveCategory] = useState<'webapps' | 'strategy' | 'moderation'>(initialCategory || 'webapps');
-  const [selectedImg, setSelectedImg] = useState<string | null>(null);
+type Project = {
+  title: string;
+  role: string;
+  challenge: string;
+  outcome: string;
+  img: string;
+  tags: string[];
+  link: string;
+  linkText?: string;
+};
 
-  useEffect(() => {
-    if (initialCategory) {
-      setActiveCategory(initialCategory);
+const categoryLabels: Record<PortfolioCategory, string> = {
+  webapps: 'Web Apps',
+  strategy: 'Content Strategy',
+  moderation: 'Community Ops'
+};
+
+const portfolioData: Record<PortfolioCategory, Project[]> = {
+  webapps: [
+    {
+      title: 'GenLayer AI Chatbot',
+      role: 'Frontend build for AI-native Web3 interaction',
+      challenge: 'Make Intelligent Contracts approachable through a direct chat interface instead of dense protocol documentation.',
+      outcome: 'Shipped a focused app experience for natural language interaction with the GenLayer ecosystem.',
+      img: './assets/images/portfolio/webapps/bot.png',
+      tags: ['React', 'GenLayer', 'AI'],
+      link: 'https://genlayer-bot.vercel.app'
+    },
+    {
+      title: 'GenLayer SentimentBot',
+      role: 'Interface concept for on-chain sentiment awareness',
+      challenge: 'Turn community signal into a product surface that can be monitored and understood by ecosystem participants.',
+      outcome: 'Built a Web3 sentiment tool concept around Intelligent Contracts, NLP, and community feedback loops.',
+      img: './assets/images/portfolio/webapps/sentiment.png',
+      tags: ['GenLayer', 'NLP', 'Web3'],
+      link: 'https://genlayer-sentiment-bot.vercel.app'
+    },
+    {
+      title: 'Trust Checker',
+      role: 'Decentralized trust verification utility',
+      challenge: 'Help users evaluate trust signals in an environment where identity and reputation are difficult to inspect.',
+      outcome: 'Delivered a verification-oriented interface built around Intuition and Web3 trust metrics.',
+      img: './assets/images/portfolio/webapps/trust.png',
+      tags: ['React', 'Intuition', 'Web3'],
+      link: 'https://trust-checker-by-9ytshade.vercel.app/'
     }
-  }, [initialCategory]);
+  ],
+  strategy: [
+    {
+      title: 'Intuition: The Future of Identity',
+      role: 'Technical narrative and ecosystem positioning',
+      challenge: 'Explain on-chain identity, reputation, and memory without losing non-technical readers.',
+      outcome: 'Published a clear breakdown of Intuition and the $TRUST thesis for Web3 identity.',
+      img: './assets/images/portfolio/strategy/tweet1.png',
+      tags: ['Web3', 'Identity', 'Intuition'],
+      link: 'https://x.com/9ytshade/status/1952789817986523146',
+      linkText: 'View on X'
+    },
+    {
+      title: 'Eliminating Centralized Risks with $UNIT',
+      role: 'Stablecoin analysis and decentralization framing',
+      challenge: 'Make the case for Bitcoin Layer 1 stablecoin infrastructure in practical, memorable language.',
+      outcome: 'Created an argument-led breakdown of decentralization, sovereignty, and stablecoin risk.',
+      img: './assets/images/portfolio/strategy/tweet2.png',
+      tags: ['Bitcoin', 'Stablecoins', '$UNIT'],
+      link: 'https://x.com/9ytshade/status/1966409598618767866',
+      linkText: 'View on X'
+    },
+    {
+      title: 'Building Intelligent Contracts on GenLayer',
+      role: 'Developer education and product explanation',
+      challenge: 'Introduce Python-native Intelligent Contracts and LLM integration in a way developers can quickly parse.',
+      outcome: 'Wrote a technical explainer around GenLayer developer experience and contract behavior.',
+      img: './assets/images/portfolio/strategy/tweet3.png',
+      tags: ['GenLayer', 'AI', 'Python'],
+      link: 'https://x.com/9ytshade/status/2052375408067191135',
+      linkText: 'View on X'
+    },
+    {
+      title: 'Bridging to Citrea Mainnet',
+      role: 'Step-by-step ecosystem onboarding',
+      challenge: 'Reduce friction for users bridging and swapping across Citrea, JuiceSwap, and Zentra Finance.',
+      outcome: 'Published a practical walkthrough designed for users moving from interest to action.',
+      img: './assets/images/portfolio/strategy/tweet4.png',
+      tags: ['Citrea', 'L2', 'DeFi'],
+      link: 'https://x.com/9ytshade/status/2049492851134808564',
+      linkText: 'View on X'
+    },
+    {
+      title: 'Native Liquidation Mechanisms on Bitcoin',
+      role: 'Technical concept translation',
+      challenge: 'Explain Bitcoin-native liquidation mechanics without burying readers in protocol complexity.',
+      outcome: 'Produced a focused explainer on $UNIT, DeFi risk, and Bitcoin L1 infrastructure.',
+      img: './assets/images/portfolio/strategy/tweet5.png',
+      tags: ['Bitcoin', 'DeFi', 'Liquidation'],
+      link: 'https://x.com/9ytshade/status/1969010434054451473',
+      linkText: 'View on X'
+    }
+  ],
+  moderation: [
+    {
+      title: 'Nexura: The Engagement Engine',
+      role: 'Community moderation and ecosystem support',
+      challenge: 'Support an engagement layer for Intuition by keeping participation useful, safe, and easy to understand.',
+      outcome: 'Contributed moderation and community operations for Nexura as it connects builders and contributors.',
+      img: './assets/images/portfolio/moderation/nexura-logo.png',
+      tags: ['Intuition', 'Community', 'Engagement'],
+      link: 'https://x.com/NexuraXYZ',
+      linkText: 'View Nexura'
+    }
+  ]
+};
 
-  const portfolioData = {
-    webapps: [
-      {
-        title: 'GenLayer AI Chatbot',
-        desc: 'An AI-powered chatbot interface for the GenLayer ecosystem, enabling natural language interactions with Intelligent Contracts.',
-        img: './assets/images/portfolio/webapps/bot.png',
-        tags: ['React', 'GenLayer', 'AI'],
-        link: 'https://genlayer-bot.vercel.app'
-      },
-      {
-        title: 'GenLayer SentimentBot',
-        desc: 'An Intelligent Contract-driven sentiment analysis tool that monitors and responds to community sentiment on-chain.',
-        img: './assets/images/portfolio/webapps/sentiment.png',
-        tags: ['GenLayer', 'NLP', 'Web3'],
-        link: 'https://genlayer-sentiment-bot.vercel.app'
-      },
-      {
-        title: 'Trust Checker',
-        desc: 'A decentralized verification tool built on Intuition, designed to assess and validate trust metrics within the Web3 space.',
-        img: './assets/images/portfolio/webapps/trust.png',
-        tags: ['React', 'Intuition', 'Web3'],
-        link: 'https://trust-checker-by-9ytshade.vercel.app/'
-      }
-    ],
-    strategy: [
-      {
-        title: 'Intuition: The Future of Identity',
-        desc: 'Exploring how Intuition is building the brain of Web3, bringing identity, reputation, and memory on-chain using $TRUST.',
-        img: './assets/images/portfolio/strategy/tweet1.png',
-        tags: ['Web3', 'Identity', 'Intuition'],
-        link: 'https://x.com/9ytshade/status/1952789817986523146',
-        linkText: 'View Official X'
-      },
-      {
-        title: 'Eliminating Centralized Risks with $UNIT',
-        desc: 'A detailed breakdown of why stablecoins need to be built on Bitcoin Layer 1 to ensure decentralization and sovereignty.',
-        img: './assets/images/portfolio/strategy/tweet2.png',
-        tags: ['Bitcoin', 'Stablecoins', '$UNIT'],
-        link: 'https://x.com/9ytshade/status/1966409598618767866',
-        linkText: 'View Official X'
-      },
-      {
-        title: 'Building Intelligent Contracts on GenLayer',
-        desc: 'Episode 13: Exploring native Python support and LLM integration for the ultimate developer experience.',
-        img: './assets/images/portfolio/strategy/tweet3.png',
-        tags: ['GenLayer', 'AI', 'Python'],
-        link: 'https://x.com/9ytshade/status/2052375408067191135',
-        linkText: 'View Official X'
-      },
-      {
-        title: 'Bridging to Citrea Mainnet',
-        desc: 'A step-by-step guide to bridging and swapping on Citrea mainnet using JuiceSwap and Zentra Finance.',
-        img: './assets/images/portfolio/strategy/tweet4.png',
-        tags: ['Citrea', 'L2', 'DeFi'],
-        link: 'https://x.com/9ytshade/status/2049492851134808564',
-        linkText: 'View Official X'
-      },
-      {
-        title: 'Native Liquidation Mechanisms on Bitcoin',
-        desc: 'Understanding the first native liquidation mechanism built on Bitcoin L1 for the $UNIT stablecoin system.',
-        img: './assets/images/portfolio/strategy/tweet5.png',
-        tags: ['Bitcoin', 'DeFi', 'Liquidation'],
-        link: 'https://x.com/9ytshade/status/1969010434054451473',
-        linkText: 'View Official X'
-      }
-    ],
-    moderation: [
-      {
-        title: 'Nexura: The Engagement Engine',
-        desc: 'Nexura is the engagement engine for the Intuition ecosystem, designed to turn passive users into active contributors and connect builders with their community through meaningful participation.',
-        img: './assets/images/portfolio/moderation/nexura-logo.png',
-        tags: ['Intuition', 'Community', 'Engagement'],
-        link: 'https://x.com/NexuraXYZ',
-        linkText: 'View Official X'
-      }
-    ]
-  };
+const Portfolio: React.FC<PortfolioProps> = ({ initialCategory }) => {
+  const [activeCategory, setActiveCategory] = useState<PortfolioCategory>(initialCategory || 'webapps');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const projects = portfolioData[activeCategory];
 
   return (
     <>
-      <section className="section" id="portfolio">
+      <section className="section portfolio-section" id="portfolio">
         <div className="container">
-          <div className="row padding-15">
-            <div className="section-title">
-              <h2 className="intro">Portfolio</h2>
-            </div>
+          <div className="section-kicker">Evidence</div>
+          <div className="section-title portfolio-heading">
+            <h2 className="intro">Selected work with a visible thesis.</h2>
+            <p>
+              These projects show the same pattern from different angles: make technical systems easier to
+              use, easier to explain, and easier to trust.
+            </p>
           </div>
 
-          <div className="row padding-15">
-            <div className="portfolio--category--buttons">
-              <div className="portfolio--subheading">
-                <a
-                  href="#webapps"
-                  className={`buttons ${activeCategory === 'webapps' ? 'active' : ''}`}
-                  onClick={(e) => { e.preventDefault(); setActiveCategory('webapps'); }}
-                >
-                  <i className="fa-solid fa-code"></i> WebApps Development
-                </a>
-                <a
-                  href="#strategy"
-                  className={`buttons ${activeCategory === 'strategy' ? 'active' : ''}`}
-                  onClick={(e) => { e.preventDefault(); setActiveCategory('strategy'); }}
-                >
-                  <i className="fa-solid fa-pen-nib"></i> Content Strategy
-                </a>
-                <a
-                  href="#moderation"
-                  className={`buttons ${activeCategory === 'moderation' ? 'active' : ''}`}
-                  onClick={(e) => { e.preventDefault(); setActiveCategory('moderation'); }}
-                >
-                  <i className="fa-solid fa-users-gear"></i> Community Moderation
-                </a>
-              </div>
-            </div>
+          <div className="portfolio-toolbar" role="tablist" aria-label="Portfolio categories">
+            {(Object.keys(categoryLabels) as PortfolioCategory[]).map((category) => (
+              <button
+                key={category}
+                type="button"
+                role="tab"
+                aria-selected={activeCategory === category}
+                className={activeCategory === category ? 'active' : ''}
+                onClick={() => setActiveCategory(category)}
+              >
+                {categoryLabels[category]}
+              </button>
+            ))}
           </div>
 
-          <div className="row portfolio--cards--container padding-15">
+          <div className="portfolio--cards--container">
             <div className="portfolio--category">
-              <h4>
-                {activeCategory === 'webapps' ? 'WebApps Development' :
-                  activeCategory === 'strategy' ? 'Content Strategy' :
-                    'Community Moderation'}
-              </h4>
+              <span>{projects.length.toString().padStart(2, '0')}</span>
+              <h3>{categoryLabels[activeCategory]}</h3>
             </div>
 
-            <div className="row">
-              {portfolioData[activeCategory].map((project, index) => (
-                <div className="portfolio--cards" key={`${activeCategory}-${index}`}>
-                  <div className="portfolio--cards--items">
-                    <div
-                      className="portfolio--cards--img"
-                      style={{ backgroundImage: `url(${project.img})` }}
-                      onClick={() => setSelectedImg(project.img)}
-                    />
-                    <div className="portfolio--card--content padding-15">
-                      <h5>{project.title}</h5>
-                      <p>{project.desc}</p>
-                      <div className="portfolio--tags">
-                        {project.tags.map(tag => (
-                          <span key={tag} className="tag">{tag}</span>
-                        ))}
-                      </div>
-                      {project.link && (
-                        <a
-                          href={project.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="portfolio--link"
-                        >
-                          {(project as any).linkText || 'View Live Site'} <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                      )}
+            <div className="portfolio-grid">
+              {projects.map((project, index) => (
+                <article className="portfolio--cards" key={`${activeCategory}-${project.title}`} style={{ '--i': index } as React.CSSProperties}>
+                  <button
+                    type="button"
+                    className="portfolio--cards--img"
+                    style={{ backgroundImage: `url(${project.img})` }}
+                    aria-label={`Preview ${project.title}`}
+                    onClick={() => setSelectedProject(project)}
+                  />
+                  <div className="portfolio--card--content">
+                    <span>{project.role}</span>
+                    <h3>{project.title}</h3>
+                    <p>{project.challenge}</p>
+                    <strong>{project.outcome}</strong>
+                    <div className="portfolio--tags">
+                      {project.tags.map(tag => (
+                        <span key={tag} className="tag">{tag}</span>
+                      ))}
                     </div>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="portfolio--link"
+                    >
+                      {project.linkText || 'View Live Site'} <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {selectedImg && (
-        <div className="modal-overlay" onClick={() => setSelectedImg(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="modal-close" onClick={() => setSelectedImg(null)}>&times;</span>
-            <img src={selectedImg} alt="Portfolio Preview" />
-            <h3>Project Preview</h3>
+      {selectedProject && (
+        <div className="modal-overlay" role="dialog" aria-modal="true" aria-label={`${selectedProject.title} preview`} onClick={() => setSelectedProject(null)}>
+          <div className="modal-content project-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" type="button" aria-label="Close preview" onClick={() => setSelectedProject(null)}>&times;</button>
+            <img src={selectedProject.img} alt={`${selectedProject.title} preview`} />
+            <div>
+              <span>{selectedProject.role}</span>
+              <h3>{selectedProject.title}</h3>
+              <p>{selectedProject.outcome}</p>
+            </div>
           </div>
         </div>
       )}
