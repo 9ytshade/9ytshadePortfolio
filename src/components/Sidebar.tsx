@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 type NavItem = {
   id: string;
@@ -21,6 +21,35 @@ const navItems: NavItem[] = [
 
 const Sidebar: React.FC<SidebarProps> = ({ activeSection, onNavigate }) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const navigationRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!isMobileOpen) {
+      return;
+    }
+
+    const handleOutsidePointerDown = (event: PointerEvent) => {
+      const target = event.target as Node;
+
+      if (!navigationRef.current?.contains(target)) {
+        setIsMobileOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMobileOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handleOutsidePointerDown);
+    document.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.removeEventListener('pointerdown', handleOutsidePointerDown);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isMobileOpen]);
 
   const handleNav = (e: React.MouseEvent, section: string) => {
     e.preventDefault();
@@ -29,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onNavigate }) => {
   };
 
   return (
-    <aside className={`navigation ${isMobileOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
+    <aside ref={navigationRef} className={`navigation ${isMobileOpen ? 'is-open' : ''}`} aria-label="Primary navigation">
       {!isMobileOpen && (
         <div className="logo">
           <a href="#home" onClick={(e) => handleNav(e, 'home')}>
