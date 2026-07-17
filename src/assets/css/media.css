@@ -156,20 +156,29 @@
     }
 
     .hero-portrait {
+        grid-template-columns: minmax(280px, 1fr) minmax(260px, 0.86fr);
+        grid-template-areas:
+            "terminal portrait"
+            "base focus";
+        align-items: center;
+        justify-items: center;
         min-height: 420px;
-        max-width: min(520px, 88vw);
+        max-width: min(900px, 92vw);
         margin: 0 auto;
-        gap: 24px;
-        place-items: center;
+        column-gap: clamp(44px, 8vw, 96px);
+        row-gap: 18px;
+        padding-bottom: 24px;
     }
 
     .hero-terminal {
+        grid-area: terminal;
         position: relative;
         top: auto;
         left: auto;
         right: auto;
-        width: min(100%, 440px);
-        margin-inline: auto;
+        width: min(100%, 430px);
+        margin-inline: 0;
+        justify-self: end;
     }
 
     .terminal-float {
@@ -181,23 +190,42 @@
     }
 
     .accent-rect-large {
-        top: 278px;
-        right: 26px;
+        top: 64px;
+        right: 18px;
     }
 
     .accent-square-medium {
-        top: 342px;
+        top: 108px;
         left: 20px;
     }
 
     .accent-square-small {
         right: 24px;
-        bottom: 110px;
+        bottom: 82px;
     }
 
     .portrait-frame {
+        grid-area: portrait;
         width: min(340px, 78vw);
         margin-top: 0;
+    }
+
+    .orbit-card-top {
+        grid-area: focus;
+        justify-self: start;
+        align-self: start;
+        position: relative;
+        inset: auto;
+        width: min(220px, 100%);
+    }
+
+    .orbit-card-bottom {
+        grid-area: base;
+        justify-self: end;
+        align-self: start;
+        position: relative;
+        inset: auto;
+        width: min(220px, 100%);
     }
 
     .service-lattice {
@@ -277,12 +305,14 @@
     }
 
     .signature {
-        font-size: clamp(2.7rem, 15vw, 4.4rem);
+        font-size: clamp(2.15rem, 10vw, 3.35rem);
+        line-height: 1.02;
     }
 
     .intro,
     .contact-copy h2 {
-        font-size: clamp(2.3rem, 13vw, 4rem);
+        font-size: clamp(2rem, 9vw, 3rem);
+        line-height: 1.03;
     }
 
     .details,
@@ -312,6 +342,11 @@
     }
 
     .hero-portrait {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "terminal"
+            "portrait";
+        gap: 18px;
         min-height: auto;
         padding-block: 20px 54px;
     }
@@ -321,6 +356,7 @@
     }
 
     .hero-terminal {
+        grid-area: terminal;
         width: 100%;
         margin-bottom: 8px;
     }
@@ -342,6 +378,7 @@
     }
 
     .orbit-card {
+        grid-area: auto;
         position: relative;
         inset: auto;
         width: 100%;
@@ -349,6 +386,7 @@
     }
 
     .portrait-frame {
+        grid-area: portrait;
         width: min(300px, 82vw);
     }
 
@@ -418,12 +456,14 @@
     }
 
     .signature {
-        font-size: clamp(2.25rem, 14vw, 3.2rem);
+        font-size: clamp(1.95rem, 9.2vw, 2.55rem);
+        line-height: 1.04;
     }
 
     .intro,
     .contact-copy h2 {
-        font-size: clamp(2rem, 12vw, 3rem);
+        font-size: clamp(1.8rem, 8.4vw, 2.35rem);
+        line-height: 1.05;
     }
 
     .details,
@@ -465,7 +505,12 @@
     }
 
     .signature {
-        font-size: 2.05rem;
+        font-size: 1.78rem;
+    }
+
+    .intro,
+    .contact-copy h2 {
+        font-size: 1.68rem;
     }
 
     .buttons {
