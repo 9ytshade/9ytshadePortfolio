@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,6 +10,7 @@ type SectionId = 'home' | 'about' | 'services' | 'portfolio' | 'contact';
 type PortfolioCategory = 'webapps' | 'strategy' | 'moderation';
 
 const App: React.FC = () => {
+  const cursorRef = useRef<HTMLDivElement | null>(null);
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [portfolioCategory, setPortfolioCategory] = useState<PortfolioCategory>('webapps');
 
@@ -58,6 +59,7 @@ const App: React.FC = () => {
       '.hero-actions',
       '.hero-metrics',
       '.hero-portrait',
+      '.hero-terminal',
       '.section-kicker',
       '.section-title',
       '.about-story',
@@ -111,6 +113,81 @@ const App: React.FC = () => {
     };
   }, [portfolioCategory]);
 
+  useEffect(() => {
+    const cursor = cursorRef.current;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    if (!cursor || reduceMotion || !canHover) {
+      return;
+    }
+
+    const interactiveSelector = [
+      'a',
+      'button',
+      'input',
+      'textarea',
+      'select',
+      '.services--box',
+      '.portfolio--cards',
+      '.portfolio--cards--img',
+      '.contact--links',
+      '.hero-terminal'
+    ].join(',');
+
+    const state = {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+      targetX: window.innerWidth / 2,
+      targetY: window.innerHeight / 2,
+      opacity: 0,
+      targetOpacity: 0,
+      scale: 1,
+      targetScale: 1
+    };
+
+    let animationFrame = 0;
+
+    const animate = () => {
+      state.x += (state.targetX - state.x) * 0.18;
+      state.y += (state.targetY - state.y) * 0.18;
+      state.opacity += (state.targetOpacity - state.opacity) * 0.18;
+      state.scale += (state.targetScale - state.scale) * 0.16;
+
+      cursor.style.opacity = state.opacity.toFixed(3);
+      cursor.style.transform = `translate3d(${(state.x - 5).toFixed(2)}px, ${(state.y - 5).toFixed(2)}px, 0) scale(${state.scale.toFixed(3)})`;
+      animationFrame = window.requestAnimationFrame(animate);
+    };
+
+    const moveCursor = (event: PointerEvent) => {
+      state.targetX = event.clientX;
+      state.targetY = event.clientY;
+      state.targetOpacity = 1;
+    };
+
+    const hideCursor = () => {
+      state.targetOpacity = 0;
+    };
+
+    const setCursorWeight = (event: PointerEvent) => {
+      state.targetScale = event.target instanceof Element && event.target.closest(interactiveSelector) ? 2.4 : 1;
+    };
+
+    animationFrame = window.requestAnimationFrame(animate);
+    window.addEventListener('pointermove', moveCursor, { passive: true });
+    window.addEventListener('pointerover', setCursorWeight);
+    window.addEventListener('pointerout', setCursorWeight);
+    document.documentElement.addEventListener('mouseleave', hideCursor);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener('pointermove', moveCursor);
+      window.removeEventListener('pointerover', setCursorWeight);
+      window.removeEventListener('pointerout', setCursorWeight);
+      document.documentElement.removeEventListener('mouseleave', hideCursor);
+    };
+  }, []);
+
   const navigateToSection = (section: string) => {
     const nextSection = section as SectionId;
     setActiveSection(nextSection);
@@ -124,6 +201,7 @@ const App: React.FC = () => {
 
   return (
     <main className="site-shell">
+      <div className="site-cursor-glow" ref={cursorRef} aria-hidden="true"></div>
       <Sidebar activeSection={activeSection} onNavigate={navigateToSection} />
       <Hero onNavigate={navigateToSection} />
       <About onNavigate={navigateToSection} />

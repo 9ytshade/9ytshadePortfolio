@@ -26,6 +26,18 @@
         grid-template-columns: minmax(0, 1fr) minmax(300px, 0.58fr);
     }
 
+    .hero-terminal {
+        top: 46px;
+        right: 0;
+        left: auto;
+        width: min(350px, 86%);
+    }
+
+    .terminal-body {
+        min-height: 198px;
+        font-size: 0.76rem;
+    }
+
     .signature {
         font-size: clamp(3rem, 6vw, 5.8rem);
     }
@@ -147,10 +159,45 @@
         min-height: 420px;
         max-width: min(520px, 88vw);
         margin: 0 auto;
+        gap: 24px;
+        place-items: center;
+    }
+
+    .hero-terminal {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        width: min(100%, 440px);
+        margin-inline: auto;
+    }
+
+    .terminal-float {
+        animation-duration: 19s;
+    }
+
+    .floating-accent {
+        opacity: 0.72;
+    }
+
+    .accent-rect-large {
+        top: 278px;
+        right: 26px;
+    }
+
+    .accent-square-medium {
+        top: 342px;
+        left: 20px;
+    }
+
+    .accent-square-small {
+        right: 24px;
+        bottom: 110px;
     }
 
     .portrait-frame {
         width: min(340px, 78vw);
+        margin-top: 0;
     }
 
     .service-lattice {
@@ -267,6 +314,31 @@
     .hero-portrait {
         min-height: auto;
         padding-block: 20px 54px;
+    }
+
+    .site-cursor-glow {
+        display: none;
+    }
+
+    .hero-terminal {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    .terminal-header {
+        min-height: 34px;
+        padding-inline: 12px;
+    }
+
+    .terminal-body {
+        min-height: 172px;
+        padding: 13px;
+        font-size: 0.72rem;
+        line-height: 1.5;
+    }
+
+    .floating-accent {
+        display: none;
     }
 
     .orbit-card {
