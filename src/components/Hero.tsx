@@ -172,9 +172,9 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               I turn complex blockchain ideas into useful products, trusted communities, and clear technical stories.
             </h1>
             <p className="details">
-              I am 9ytshade, a Nigeria-based creator with roots in Physics and Digital Electronics. I build
-              React interfaces, explain decentralized systems, and support ecosystem operations where clarity,
-              trust, and execution all have to show up at once.
+              I am 9ytshade, a software engineer and technical creator building React interfaces, AI-powered
+              workflows, Web3 products, and community systems where clarity, trust, and execution all have to
+              show up at once.
             </p>
             <div className="hero-actions">
               <a href="#portfolio" className="buttons primary" onClick={(e) => { e.preventDefault(); onNavigate('portfolio'); }}>

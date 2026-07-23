@@ -5,6 +5,7 @@ import About from './components/About';
 import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
 
 type SectionId = 'home' | 'about' | 'services' | 'portfolio' | 'contact';
 type PortfolioCategory = 'webapps' | 'strategy' | 'moderation';
@@ -71,7 +72,9 @@ const App: React.FC = () => {
       '.portfolio--cards--container',
       '.contact-copy > *',
       '.contact--links',
-      '.contact--form'
+      '.contact--form',
+      '.footer-panel',
+      '.footer-bottom'
     ];
 
     let disconnectObserver: (() => void) | undefined;
@@ -211,6 +214,7 @@ const App: React.FC = () => {
       />
       <Portfolio key={portfolioCategory} initialCategory={portfolioCategory} />
       <Contact />
+      <Footer onNavigate={navigateToSection} />
     </main>
   );
 };

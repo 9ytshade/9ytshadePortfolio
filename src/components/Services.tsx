@@ -59,7 +59,7 @@ const services: Service[] = [
   {
     icon: 'fa-solid fa-microchip',
     title: 'Analytical Consulting',
-    proof: 'Physics-informed problem solving and systems thinking',
+    proof: 'Product reasoning, systems thinking, and clear decision paths',
     desc: 'I bring quantitative reasoning to messy technical questions, helping teams break vague problems into testable decisions.',
     action: 'Start Brief'
   }
