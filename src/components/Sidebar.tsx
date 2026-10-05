@@ -99,6 +99,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, onNavigate }) => {
         <a href="https://github.com/9ytshade" title="GitHub" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-github"></i>
         </a>
+        <a href="https://9ytshade.medium.com/" title="Medium" target="_blank" rel="noopener noreferrer">
+          <i className="fa-brands fa-medium"></i>
+        </a>
         <a href="https://www.linkedin.com/in/ukpeflynn/" title="LinkedIn" target="_blank" rel="noopener noreferrer">
           <i className="fa-brands fa-linkedin-in"></i>
         </a>

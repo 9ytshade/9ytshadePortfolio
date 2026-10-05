@@ -26,6 +26,12 @@ const contactLinks = [
     href: 'https://x.com/9ytshade'
   },
   {
+    icon: 'fa-brands fa-medium',
+    label: 'Medium',
+    value: '9ytshade.medium.com',
+    href: 'https://9ytshade.medium.com/'
+  },
+  {
     icon: 'fa-brands fa-linkedin-in',
     label: 'LinkedIn',
     value: 'linkedin.com/in/ukpeflynn',

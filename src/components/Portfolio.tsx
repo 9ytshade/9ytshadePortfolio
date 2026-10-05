@@ -6,6 +6,12 @@ interface PortfolioProps {
   initialCategory?: PortfolioCategory;
 }
 
+type ProjectLink = {
+  label: string;
+  url: string;
+  icon?: string;
+};
+
 type Project = {
   title: string;
   role: string;
@@ -13,8 +19,9 @@ type Project = {
   outcome: string;
   img: string;
   tags: string[];
-  link: string;
+  link?: string;
   linkText?: string;
+  links?: ProjectLink[];
 };
 
 const categoryLabels: Record<PortfolioCategory, string> = {
@@ -25,6 +32,19 @@ const categoryLabels: Record<PortfolioCategory, string> = {
 
 const portfolioData: Record<PortfolioCategory, Project[]> = {
   webapps: [
+    {
+      title: 'ProofPay',
+      role: 'Intelligent Contract-powered public work escrow',
+      challenge: 'Eliminate freelance payment disputes and proof verification bottlenecks through deterministic on-chain consensus.',
+      outcome: 'Built a decentralized public bounty desk on GenLayer with validator assessment, live proof submission, and automated escrow release.',
+      img: './assets/images/portfolio/webapps/proofpay.png',
+      tags: ['React', 'GenLayer', 'Intelligent Contracts', 'Escrow', 'Web3'],
+      links: [
+        { label: 'Live App', url: 'https://9ytshade.vercel.app/', icon: 'fa-solid fa-arrow-up-right-from-square' },
+        { label: 'GitHub', url: 'https://github.com/9ytshade/proofpay', icon: 'fa-brands fa-github' },
+        { label: 'Article', url: 'https://9ytshade.medium.com/proofpay-how-we-built-an-intelligent-contract-powered-escrow-system-that-eliminates-freelance-f7f81bf54c17?sharedUserId=9ytshade', icon: 'fa-brands fa-medium' }
+      ]
+    },
     {
       title: 'GenLayer AI Chatbot',
       role: 'Frontend build for AI-native Web3 interaction',
@@ -54,6 +74,16 @@ const portfolioData: Record<PortfolioCategory, Project[]> = {
     }
   ],
   strategy: [
+    {
+      title: 'Rayls: The 50% Burn Loop Investigation',
+      role: 'Deep-dive on-chain architectural research',
+      challenge: 'Examine how private banking privacy transactions on Axyl L1 trigger verifiable batch fee burns of public $RLS on Ethereum.',
+      outcome: 'Published a code-level investigation and verification on Binance Square auditing Proof of Usage, Axyl L1, and verifiable batch deflation.',
+      img: './assets/images/portfolio/strategy/rayls.png',
+      tags: ['Rayls', 'Ethereum', 'DeFi', 'On-Chain Audit', 'Binance Square'],
+      link: 'https://app.binance.com/uni-qr/cart/373705578108451?r=GMMEMGNT&l=en-AF&uco=WXE4amQSLSQtZi6lKxBb6w&uc=app_square_share_link&us=copylink',
+      linkText: 'View on Binance Square'
+    },
     {
       title: 'Intuition: The Future of Identity',
       role: 'Technical narrative and ecosystem positioning',
@@ -179,14 +209,30 @@ const Portfolio: React.FC<PortfolioProps> = ({ initialCategory }) => {
                         <span key={tag} className="tag">{tag}</span>
                       ))}
                     </div>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="portfolio--link"
-                    >
-                      {project.linkText || 'View Live Site'} <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
+                    {project.links && project.links.length > 0 ? (
+                      <div className="portfolio--links-group">
+                        {project.links.map((actionLink) => (
+                          <a
+                            key={actionLink.label}
+                            href={actionLink.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="portfolio--link portfolio--link-pill"
+                          >
+                            {actionLink.label} <i className={actionLink.icon || 'fa-solid fa-arrow-up-right-from-square'}></i>
+                          </a>
+                        ))}
+                      </div>
+                    ) : project.link ? (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="portfolio--link"
+                      >
+                        {project.linkText || 'View Live Site'} <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                      </a>
+                    ) : null}
                   </div>
                 </article>
               ))}
@@ -204,6 +250,32 @@ const Portfolio: React.FC<PortfolioProps> = ({ initialCategory }) => {
               <span>{selectedProject.role}</span>
               <h3>{selectedProject.title}</h3>
               <p>{selectedProject.outcome}</p>
+              <div style={{ marginTop: '16px' }}>
+                {selectedProject.links && selectedProject.links.length > 0 ? (
+                  <div className="portfolio--links-group">
+                    {selectedProject.links.map((actionLink) => (
+                      <a
+                        key={actionLink.label}
+                        href={actionLink.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="portfolio--link portfolio--link-pill"
+                      >
+                        {actionLink.label} <i className={actionLink.icon || 'fa-solid fa-arrow-up-right-from-square'}></i>
+                      </a>
+                    ))}
+                  </div>
+                ) : selectedProject.link ? (
+                  <a
+                    href={selectedProject.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="portfolio--link"
+                  >
+                    {selectedProject.linkText || 'View Live Site'} <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                  </a>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>

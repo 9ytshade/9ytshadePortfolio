@@ -35,11 +35,14 @@ html {
 body {
     margin: 0;
     color: var(--ink);
-    background:
-        linear-gradient(90deg, rgba(114, 209, 138, 0.03) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(114, 209, 138, 0.025) 1px, transparent 1px),
-        var(--bg);
-    background-size: 72px 72px;
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(circle at 18% 22%, rgba(216, 226, 210, 0.038) 0.8px, transparent 1.2px),
+        radial-gradient(circle at 74% 65%, rgba(216, 226, 210, 0.032) 0.8px, transparent 1.2px),
+        radial-gradient(circle at 42% 88%, rgba(216, 226, 210, 0.026) 0.9px, transparent 1.3px),
+        radial-gradient(circle at 86% 15%, rgba(216, 226, 210, 0.03) 0.7px, transparent 1.1px),
+        radial-gradient(circle at 55% 40%, rgba(216, 226, 210, 0.02) 1px, transparent 1.4px);
+    background-size: 24px 24px, 31px 31px, 47px 47px, 38px 38px, 62px 62px;
     font-family: var(--body);
     overflow-x: hidden;
     text-rendering: optimizeLegibility;
@@ -51,10 +54,11 @@ body::before {
     inset: 0;
     pointer-events: none;
     z-index: 30;
-    opacity: 0.18;
+    opacity: 0.16;
     background-image:
-        repeating-linear-gradient(0deg, transparent 0 2px, rgba(255, 255, 255, 0.04) 2px 3px),
-        radial-gradient(circle at 28% 18%, rgba(114, 209, 138, 0.1), transparent 24rem);
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04) 0.6px, transparent 1.2px),
+        radial-gradient(circle at 28% 18%, rgba(114, 209, 138, 0.08), transparent 28rem);
+    background-size: 19px 19px, 100% 100%;
     mix-blend-mode: screen;
 }
 
@@ -165,7 +169,8 @@ main {
 }
 
 .intro {
-    font-size: clamp(2.4rem, 6vw, 5.8rem);
+    font-size: clamp(2.1rem, 4.4vw, 4.2rem);
+    line-height: 1.05;
 }
 
 .section-title p,
@@ -474,11 +479,13 @@ main {
 .hero-grid {
     position: absolute;
     inset: 0;
-    opacity: 0.75;
+    opacity: 0.65;
     background:
-        linear-gradient(110deg, rgba(114, 209, 138, 0.15), transparent 28%),
-        repeating-linear-gradient(90deg, transparent 0 92px, rgba(216, 226, 210, 0.08) 92px 93px);
-    mask-image: linear-gradient(90deg, transparent, black 18%, black 82%, transparent);
+        radial-gradient(circle at 18% 26%, rgba(114, 209, 138, 0.12), transparent 32%),
+        radial-gradient(circle at 82% 70%, rgba(215, 154, 95, 0.08), transparent 38%),
+        radial-gradient(circle at 45% 55%, rgba(216, 226, 210, 0.03) 0.8px, transparent 1.3px);
+    background-size: 100% 100%, 100% 100%, 28px 28px;
+    mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%);
 }
 
 .hero-layout {
@@ -492,7 +499,8 @@ main {
 .signature {
     max-width: 860px;
     margin-top: 18px;
-    font-size: clamp(3.1rem, 6.8vw, 7.4rem);
+    font-size: clamp(2.4rem, 4.8vw, 5.2rem);
+    line-height: 1.04;
 }
 
 .details {
@@ -1190,6 +1198,48 @@ main {
     outline: 0;
 }
 
+.portfolio--links-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.portfolio--link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: rgba(114, 209, 138, 0.08);
+    color: var(--ink);
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1.2;
+    transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.portfolio--link-pill i {
+    font-size: 0.74rem;
+    color: var(--green);
+    transition: color 180ms ease;
+}
+
+.portfolio--link-pill:hover,
+.portfolio--link-pill:focus-visible {
+    background: var(--green);
+    border-color: var(--green);
+    color: #071009;
+    transform: translateY(-1px);
+}
+
+.portfolio--link-pill:hover i,
+.portfolio--link-pill:focus-visible i {
+    color: #071009;
+}
+
 .contact-section {
     min-height: auto;
     padding-bottom: 120px;
@@ -1204,8 +1254,8 @@ main {
 
 .contact-copy h2 {
     margin-top: 12px;
-    font-size: clamp(2.6rem, 6vw, 6rem);
-    line-height: 0.98;
+    font-size: clamp(2.1rem, 4.4vw, 4.2rem);
+    line-height: 1.05;
 }
 
 .contact-copy p {

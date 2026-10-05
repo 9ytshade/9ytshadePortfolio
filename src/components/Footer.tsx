@@ -24,6 +24,11 @@ const footerSocials = [
     icon: 'fa-brands fa-github'
   },
   {
+    label: 'Medium',
+    href: 'https://9ytshade.medium.com/',
+    icon: 'fa-brands fa-medium'
+  },
+  {
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/ukpeflynn/',
     icon: 'fa-brands fa-linkedin-in'
