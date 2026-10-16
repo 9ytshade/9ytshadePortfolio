@@ -186,11 +186,11 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </div>
             <dl className="hero-metrics" aria-label="Portfolio summary">
               <div>
-                <dt>4</dt>
+                <dt>5</dt>
                 <dd>shipped Web3 tools</dd>
               </div>
               <div>
-                <dt>6</dt>
+                <dt>8</dt>
                 <dd>technical content pieces</dd>
               </div>
               <div>

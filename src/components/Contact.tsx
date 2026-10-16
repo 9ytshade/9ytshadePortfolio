@@ -40,7 +40,7 @@ const contactLinks = [
 ];
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', subject: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -67,7 +67,7 @@ const Contact: React.FC = () => {
       const result = await response.json();
       if (result.success) {
         setStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', subject: '', message: '' });
         setTimeout(() => setStatus('idle'), 5000);
       } else {
         setStatus('error');
@@ -104,16 +104,10 @@ const Contact: React.FC = () => {
               <span>Project Signal</span>
               <h3>Send a concise brief</h3>
             </div>
-            <div className="form-row">
-              <label className="form--group" htmlFor="form-name">
-                <span>Name</span>
-                <input type="text" id="form-name" name="name" className="form--control" required value={formData.name} onChange={handleChange} />
-              </label>
-              <label className="form--group" htmlFor="form-email">
-                <span>Email</span>
-                <input type="email" id="form-email" name="email" className="form--control" required value={formData.email} onChange={handleChange} />
-              </label>
-            </div>
+            <label className="form--group" htmlFor="form-name">
+              <span>Name</span>
+              <input type="text" id="form-name" name="name" className="form--control" required value={formData.name} onChange={handleChange} />
+            </label>
             <label className="form--group" htmlFor="form-subject">
               <span>Subject</span>
               <input type="text" id="form-subject" name="subject" className="form--control" required value={formData.subject} onChange={handleChange} />

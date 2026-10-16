@@ -51,11 +51,8 @@ const About: React.FC<AboutProps> = ({ onNavigate }) => {
               where ambiguity has to become a clear next step.
             </p>
             <div className="about-actions">
-              <a className="buttons primary" href="./assets/INTELLIGENT CV (SE).pdf" download>
-                Download CV <i className="fa-solid fa-file-arrow-down"></i>
-              </a>
-              <a href="#contact" className="buttons secondary" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}>
-                Check Availability
+              <a href="#contact" className="buttons primary" onClick={(e) => { e.preventDefault(); onNavigate('contact'); }}>
+                Check Availability <i className="fa-solid fa-arrow-right"></i>
               </a>
             </div>
           </article>
