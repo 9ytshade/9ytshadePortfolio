@@ -66,7 +66,8 @@ const portfolioData: Record<PortfolioCategory, Project[]> = {
       tags: ['React', 'GenLayer', 'AI Agents', 'x402', 'Arbitration'],
       links: [
         { label: 'Live App', url: 'https://agentsettle-olive.vercel.app/', icon: 'fa-solid fa-arrow-up-right-from-square' },
-        { label: 'GitHub', url: 'https://github.com/9ytshade/agentsettle', icon: 'fa-brands fa-github' }
+        { label: 'GitHub', url: 'https://github.com/9ytshade/agentsettle', icon: 'fa-brands fa-github' },
+        { label: 'Article', url: 'https://medium.com/@9ytshade/agentsettle-autonomous-agentic-commerce-sla-dispute-arbitration-protocol-on-genlayer-08ffd0c4445b?sharedUserId=9ytshade', icon: 'fa-brands fa-medium' }
       ]
     },
     {
@@ -78,7 +79,8 @@ const portfolioData: Record<PortfolioCategory, Project[]> = {
       tags: ['Next.js', 'GenLayer', 'Anti-Sybil', 'Oracle', 'Staking'],
       links: [
         { label: 'Live App', url: 'https://critiqproof.vercel.app/', icon: 'fa-solid fa-arrow-up-right-from-square' },
-        { label: 'GitHub', url: 'https://github.com/9ytshade/critiqproof', icon: 'fa-brands fa-github' }
+        { label: 'GitHub', url: 'https://github.com/9ytshade/critiqproof', icon: 'fa-brands fa-github' },
+        { label: 'Article', url: 'https://medium.com/@9ytshade/critiqproof-how-we-built-a-staked-consumer-critique-purchase-verification-oracle-on-genlayer-7e8bfa36ba3b?sharedUserId=9ytshade', icon: 'fa-brands fa-medium' }
       ]
     },
     {
